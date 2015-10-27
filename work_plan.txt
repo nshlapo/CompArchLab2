@@ -1,0 +1,34 @@
+Task                            Finished By        Time
+-------------------------------------------------------
+
+Input Conditioner               10/30
+-Circuit Diagram                                    1h30m
+-Module                                             1h00m
+-Test Bench                                         0h45m
+-Timing Analysis                                    1h30m
+
+Shift Register                  11/1
+-Module                                             1h00m
+-Test Bench                                         0h45m
+
+Midpoint Checkin                11/1
+-Load to FPGA                                       0h20m
+-Design Test Sequence                               0h40m
+
+SPI Memory                      11/5
+-Review/Redesign Schematic                          0h30m
+-Write Operation                                    1h30m
+-Read Operation                                     1h30m
+
+SPI Memory Testing              11/7
+-Load to FPGA                                       0h20m
+-Write Test Strategy                                0h45m
+
+Fault Injection                 11/8
+-Modify breakable modules                           1h15m
+-Test                                               1h00m
+
+Final Writeup                   11/8                1h30m
+
+Total                                               15h50
+

@@ -14,7 +14,7 @@ You will work in groups of ~3. You may shuffle teams if you so choose.
 
 ## Work Plan ##
 
-Draft a work plan for this lab.  Break down the lab in to small portions, and for each portion predict how long it will take (in hours) and when it will be done by (date). Use your work plan reflection from Lab 1 to help with this task. 
+Draft a work plan for this lab.  Break down the lab in to small portions, and for each portion predict how long it will take (in hours) and when it will be done by (date). Use your work plan reflection from Lab 1 to help with this task.
 
 Optional: read about [Evidence Based Scheduling](http://www.joelonsoftware.com/items/2007/10/26.html) for some of our rationale for collecting and reflecting on this information.
 
@@ -28,7 +28,7 @@ The Input Conditioning subcircuit serves three purposes:
 
 1. **Input Synchronization**:  The pair of D flip-flops at the front of this unit synchronize the external signal to the internal clock domain. The setup and hold requirements of the first flip-flop will likely be violated – its input can occur at any phase offset with respect to the internal oscillator.  The second flip-flop takes the partially synchronized signal and brings it fully into phase with the internal domain.
 
-1. **Input Debouncing**:  Buttons and Switches are notoriously noisy, and may be unstable for several milliseconds after a transition due to mechanical oscillations.  Purely electrical signal sources may also show similar (but much less severe) oscillations due to noise and signal reflections.  This circuit cleans up that oscillation by waiting for it to stabilize. 
+1. **Input Debouncing**:  Buttons and Switches are notoriously noisy, and may be unstable for several milliseconds after a transition due to mechanical oscillations.  Purely electrical signal sources may also show similar (but much less severe) oscillations due to noise and signal reflections.  This circuit cleans up that oscillation by waiting for it to stabilize.
 
 1. **Edge Detection**: These signals are asserted for a single clock cycle on each positive and negative edge of the external signal.  These are used by other subcircuits to emulate `@(posedge ___)` type behaviors without creating extra clock domains.
 
@@ -45,7 +45,7 @@ Modify the module so that the `positiveedge` and `negativeedge` signals are corr
 Note: There are several possible ways to generate the edge signals. Remember that `assign` statements are continuous and operate on `wire`s, while assignments in `always` blocks (e.g. nonblocking `<=`) operate on `reg`s.
 
 ### Input Conditioner Deliverables ###
- - Complete module in `inputconditioner.v` 
+ - Complete module in `inputconditioner.v`
  - Your test bench `inputconditioner.t.v` demonstrates the three Input Conditioner functions
  - Test script (`inputconditioner.do` or Linux equivalent). This script should execute the test bench, view appropriate signals and zoom the wave form to fit.
  - In your final report, include a circuit diagram of the structural circuit for the input conditioner. This should be drawn from primitives such as D flip-flops, adders, muxes, and basic gates.
@@ -133,7 +133,7 @@ The `SCLK`, `CS`, `MISO`, and `MOSI` signals obey the SPI standard. The Fault In
 
 ### Behavior ###
 
-Each transaction begins with the Chip Select `CS` line being asserted `low`.  Whenever `CS` is `high`, the memory ignores all other inputs, tri-states `MISO`, and resets any communication state machines.  
+Each transaction begins with the Chip Select `CS` line being asserted `low`.  Whenever `CS` is `high`, the memory ignores all other inputs, tri-states `MISO`, and resets any communication state machines.
 
 Next, 8 bits are clocked in by the Master.  The first 7 bits are the memory address, Most Significant Bit first.  The 8th bit is the `R/~W` flag: Read when high, Write when low.
 
@@ -157,7 +157,7 @@ Data is always presented on the falling edge, and always read on the rising edge
 
 This is a _recommended_ schematic for the SPI Memory.  The next few pages provide additional scaffolding for this design route, but you may choose to implement your SPI Memory by any means you find appropriate.  Stubbed signals are controlled by the Finite State Machine.  You may require additional signals as inputs to the FSM.  System Clock routed as a net label for clarity.
 
-The Serial Out pin is synchronized to the falling edge of `SCLK` to obey the standard we are using (Data is presented on the falling edge, and captured on the rising edge).  
+The Serial Out pin is synchronized to the falling edge of `SCLK` to obey the standard we are using (Data is presented on the falling edge, and captured on the rising edge). 
 
 ### Finite State Machine ###
 
@@ -181,12 +181,12 @@ Repeat the process from the Midpoint Check In to instantiate your SPI memory on 
 
 In addition to the FPGA fabric, the Zynq chip on your board also contains an ARM processor. We will use this processor to test your SPI memory.
 
-See the [NINJA quickstart guide](https://docs.google.com/document/d/1gCVD3G9wRk73NT843JtR1htCnbzCTgUvUQSzh4oTUGI/edit?usp=sharing) for more details. Run your test sequences and view the results by communicating with the ARM processor (i.e. using `xil_printf`). 
+See the [NINJA quickstart guide](https://docs.google.com/document/d/1gCVD3G9wRk73NT843JtR1htCnbzCTgUvUQSzh4oTUGI/edit?usp=sharing) for more details. Run your test sequences and view the results by communicating with the ARM processor (i.e. using `xil_printf`).
 
 You may also optionally trigger your test sequence using the onboard buttons and report out results using the LEDs.
 
 ### Test Strategy ###
-Your final report should include a detailed analysis of your testing strategy.  Why did you choose the test sequences you did?  
+Your final report should include a detailed analysis of your testing strategy.  Why did you choose the test sequences you did?
 
 ### External testing (optional) ###
 
@@ -238,7 +238,7 @@ The following commands flush the work library.  This makes issues associated wit
 
 ```
 vdel -lib work -all
-vlib work 
+vlib work
 ```
 
 The first command will fail if the library does not exist yet.  You may need to manually execute the second one when you create a new project.
@@ -271,8 +271,7 @@ sim:/spiMemoryTest/spim/state_virtual
 ```
 
 This syntax creates virtual type `state_type`, where `0` is mapped to `GET`, `1` is mapped to `GOT` and so on.  The next line copies the state machine state as a new virtual signal with the type `state_type`.  This gets injected into the simulation GUI, where you can then plot it like a normal signal.
- 
-<img src="https://e38023e2-a-62cb3a1a-s-sites.googlegroups.com/site/ca15fall/resources/lab2-msimgui.png" alt="ModelSim virtual type">
- 
-You will need to keep the parameter and virtual definitions synchronized by hand.
 
+<img src="https://e38023e2-a-62cb3a1a-s-sites.googlegroups.com/site/ca15fall/resources/lab2-msimgui.png" alt="ModelSim virtual type">
+
+You will need to keep the parameter and virtual definitions synchronized by hand.

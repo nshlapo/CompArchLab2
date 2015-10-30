@@ -1,1 +1,1 @@
-iverilog -o build/compiled verilog/inputconditioner.v verilog/inputconditioner.t.v && ./build/compiled
+iverilog -o build/compiled verilog/inputconditioner.v tests/inputconditioner.t.v && ./build/compiled && rm ./build/compiled

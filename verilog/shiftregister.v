@@ -19,6 +19,7 @@ input               serialDataIn       // Load shift reg serially
 );
 
     reg [width-1:0]      shiftregistermem;
+
     always @(posedge clk) begin
       if (peripheralClkEdge == 1)  begin
         shiftregistermem <= {shiftregistermem[width-2:0], serialDataIn};
@@ -27,6 +28,8 @@ input               serialDataIn       // Load shift reg serially
         shiftregistermem <= parallelDataIn;
       end
     end
+
     assign serialDataOut = shiftregistermem[width-1];
     assign parallelDataOut = shiftregistermem;
+
 endmodule

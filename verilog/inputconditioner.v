@@ -7,11 +7,11 @@
 
 module inputconditioner
 (
-input 	    clk,            // Clock domain to synchronize input to
-input	    noisysignal,    // (Potentially) noisy input signal
 output reg  conditioned,    // Conditioned output signal
 output reg  positiveedge,   // 1 clk pulse at rising edge of conditioned
-output reg  negativeedge    // 1 clk pulse at falling edge of conditioned
+output reg  negativeedge,    // 1 clk pulse at falling edge of conditioned
+input       clk,            // Clock domain to synchronize input to
+input       noisysignal    // (Potentially) noisy input signal
 );
 
     parameter counterwidth = 3; // Counter size, in bits, >= log2(waittime)

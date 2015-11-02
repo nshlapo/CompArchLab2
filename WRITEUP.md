@@ -40,3 +40,9 @@ First, we test our parallel load, serial out behavior by loading an 8-bit number
 Then, we test our shifting by enabling the peripheral clock edge and loading a bit into the serial data in. We get back parallel data out, which is just like the parallel data that we loaded in the previous test, but shifted over once and with our serial data bit on the end.
 
 Finally, we make sure that we cannot both do parallel load and shift by enabling both. We find that the parallel data out is shifted again, rather than being overwritten by the parallel data in.
+
+## Midpoint Checkin
+
+Below is a link showing our shift register being tested.
+
+tinyurl.com/midpointcheckin

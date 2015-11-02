@@ -1,5 +1,5 @@
-module SPI(
-    output[7:1] parOut,
+module midpoint(
+    output[7:0] parOut,
     input button0,
     input switch0,
     input switch1,

@@ -1,0 +1,1 @@
+iverilog -o build/compiled verilog/shiftregister.v tests/shiftregister.t.v && ./build/compiled && rm ./build/compiled

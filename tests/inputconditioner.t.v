@@ -23,7 +23,7 @@ module testConditioner();
 
     initial begin
 
-        $dumpfile("test.vcd");
+        $dumpfile("inputconditioner.vcd");
         $dumpvars(0,dut);
 
         $display("pin conditioned rising falling | Expected");

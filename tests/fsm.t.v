@@ -29,9 +29,9 @@ module testStateMachine();
 
         CS = 1; #20
         CS = 0; read_write = 1; #300
-        CS = 1; #20
-        CS = 0; read_write = 0; #300
-        CS = 1; #20
+        // CS = 1; #20
+        // CS = 0; read_write = 0; #300
+        // CS = 1; #20
 
         $finish;
     end

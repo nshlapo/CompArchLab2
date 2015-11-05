@@ -11,46 +11,39 @@ output reg ad_we, // address write enable
 output reg sr_we // shift register write enable
 );
 
-parameter state_get = 0;
-parameter state_got = 1;
-parameter state_read = 2;
-parameter state_read2 = 3;
-parameter state_read3 = 4;
-parameter state_write = 5;
-parameter state_write2 = 6;
-parameter state_done = 7;
+  parameter state_get = 0;
+  parameter state_got = 1;
+  parameter state_read = 2;
+  parameter state_read2 = 3;
+  parameter state_read3 = 4;
+  parameter state_write = 5;
+  parameter state_write2 = 6;
+  parameter state_done = 7;
 
-reg[2:0] count;
-reg[2:0] curr_state;
+  // NOTE: This overflows at 7.
+  reg[2:0] count = 0;
+  reg[2:0] curr_state = state_get;
 
-initial begin
-  assign count = 0;
-  assign curr_state = state_get;
-end
+  always @(s_clk) begin
 
-always @(s_clk) begin
-  if (CS == 1) begin
-    curr_state = state_get;
-    count = 0;
-  end
+    if (CS == 1) begin
+      curr_state = state_get;
+      count = 0;
+    end
 
-  /*ad_we = 0;
-  miso_buff = 0;
-  sr_we = 0;
-  dm_we = 0;*/
+    /*ad_we = 0;
+    miso_buff = 0;
+    sr_we = 0;
+    dm_we = 0;*/
 
-  case (curr_state)
+    case (curr_state)
       state_get: begin
-        if (count == 8) begin
-          $display("here");
+
+        // I THINK THIS IS RIGHT. WHEN COUNT=7, WE RESET COUNT AND PROGRESS THE STAGE.
+        if (count == 7) begin
           curr_state <= state_got;
-          count <= count + 1;
         end
-        else begin
-          /*count <= count + 1;*/
-          count <= 4;
-          $display("hello");
-        end
+        count <= count + 1;
         $display(count);
       end
 
@@ -98,7 +91,7 @@ always @(s_clk) begin
       state_done: begin
 
       end*/
-  endcase
-end
+    endcase
+  end
 
 endmodule

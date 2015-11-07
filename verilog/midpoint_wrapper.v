@@ -60,7 +60,7 @@ module midpoint_wrapper
     // jkff1 src_sel(.trigger(clk), .j(btn[2]), .k(btn[1]), .q(res_sel));
     // mux2 #(4) output_select(.in0(res0), .in1(res1), .sel(res_sel), .out(led));
 
-    midpoint spi (.parOut(parOut), .button0(btn[0]), .switch0(sw[0]), .switch1(sw[1]), .Clk(clk));
+    midpoint spi (.button0(btn[0]), .switch0(sw[0]), .switch1(sw[1]), .Clk(clk), .parOut(parOut));
 
     assign led = parOut[3:0];
     // assign res1 = parOut[7:4];

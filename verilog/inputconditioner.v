@@ -50,7 +50,7 @@ output reg  negativeedge    // 1 clk pulse at falling edge of conditioned
 
 endmodule
 
-module inputconditioner_breakable
+/*module inputconditioner_breakable
 (
 input       clk,            // Clock domain to synchronize input to
 input       noisysignal,    // (Potentially) noisy input signal
@@ -97,7 +97,7 @@ input fault
         end
         synchronizer0 <= noisysignal;
         synchronizer1 <= synchronizer0;
-    end
+        end
     end
 
-endmodule
+endmodule */

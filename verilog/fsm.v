@@ -1,4 +1,6 @@
-module fsm(input s_clk,
+
+module fsm(input clk,
+          input s_clk,
           input CS,
           input read_write,
           output reg miso_buff, // MISO enable
@@ -19,7 +21,7 @@ parameter state_done = 7;
 reg[3:0] count = 0;
 reg[2:0] curr_state = state_get;
 
-always @(s_clk) begin
+always @(posedge clk, posedge s_clk) begin
   ad_we = 0;
   miso_buff = 0;
   sr_we = 0;

@@ -11,10 +11,10 @@ module spiMemory
     input           mosi_pin,   // SPI master out slave in
     input           fault_pin,  // For fault injection testing
     output [3:0]    leds        // LEDs for debugging
-)
+);
     wire [4:0] unwire;
-    wire sclkpos, sclkneg, serialin, chipselect, miso_buff, dm_we, ad_we, sr_we, serialout, triwire,
-    wire [7:0] memout, parout, address,
+    wire sclkpos, sclkneg, serialin, chipselect, miso_buff, dm_we, ad_we, sr_we, serialout, triwire;
+    wire [7:0] memout, parout, address;
 
 
  inputconditioner serialcond (clk, mosi_pin, serialin, unwire[0], unwire[1]);
@@ -23,7 +23,7 @@ module spiMemory
 
  shiftregister shreg (clk, sclkpos, sr_we, memout, serialin, parout, serialout);
 
- fsm fistma (sclkpos, chipselect, parout[0], miso_buff, dm_we, ad_we, sr_we);
+ fsm fistma (clk, sclkpos, chipselect, parout[0], miso_buff, dm_we, ad_we, sr_we);
 
  addressLatch adlatch (clk, ad_we, parout, address);
 

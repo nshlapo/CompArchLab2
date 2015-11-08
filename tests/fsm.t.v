@@ -28,9 +28,9 @@ module testStateMachine();
         $dumpvars(0,dut);
 
         CS = 1; #20
-        CS = 0; read_write = 1; #300
+        CS = 0; read_write = 1; #500
         CS = 1; #20
-        CS = 0; read_write = 0; #300
+        CS = 0; read_write = 0; #500
         CS = 1; #20
 
         $finish;

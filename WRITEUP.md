@@ -32,7 +32,7 @@ Testing edge detection: rising
 1   1           1      0       | 1 1 1 0
 ```
 
-![](pics/waveform.png)
+![](pics/input_conditioner_wave.png)
 
 We first check that input synchronization works by changing `noisysignal` at an offset from the clock, and then checking `conditioned` on clock edges. We check debouncing by flickering `noisysignal` on and off and ensuring `conditioned` remains constant. We check that `positiveedge` and `negativeedge` work by forcing `conditioned` to change, and then checking their outputs on the clock cycle where `conditioned` changed. They both go on for one clock cycle, then back off.
 

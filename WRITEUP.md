@@ -72,7 +72,8 @@ Finally, we make sure that we cannot both do parallel load and shift by enabling
 
 Below is a link showing our shift register being tested.
 
-[tinyurl.com/midpointcheckin]
+
+<tinyurl.com/midpointcheckin>
 
 ## Finite State Machine
 

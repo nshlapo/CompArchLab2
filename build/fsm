@@ -1,0 +1,1 @@
+iverilog -o build/compiled verilog/fsm.v tests/fsm.t.v && ./build/compiled && rm ./build/compiled

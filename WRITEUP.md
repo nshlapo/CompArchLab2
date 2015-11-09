@@ -1,6 +1,17 @@
 #Lab 2 Write-Up
 ####Nur Shlapobersky, David Abrahams, Kai Levy
 
+## Run our test benches
+
+To run our test benches, run the appropriate bash script in the `tests` directory from the top level project directory. For example:
+
+```
+$ ./build/shiftRegister
+VCD info: dumpfile shftregister.vcd opened for output.
+...
+1            | 1                 | 00000000       | 11101010        | 11101010
+```
+
 ##Input Conditioner
 
 #####Circuit
@@ -35,6 +46,22 @@ Each clock cycle takes 1/(50 * 10^6) seconds, so for `waittime=10`, the maximum 
 
 #####Test Strategy
 
+Test bench:
+
+```
+Testing parallel in, serial out.
+parallelLoad | parallelDataIn | serialDataOut | Expected Out
+1            | 10111010       | 1             | 1
+-----------------------------------------------
+Testing serial in, parallel out.
+peripheralClkEdge | serialDataIn | parallelDataOut | Expected Out
+1                 | 1            | 01110101        | 01110101
+-----------------------------------------------
+Testing parallel load and peripheralClkEdge. peripheralClkEdge wins.
+parallelLoad | peripheralClkEdge | parallelDataIn | parallelDataOut | Expected Out
+1            | 1                 | 00000000       | 11101010        | 11101010
+```
+
 First, we test our parallel load, serial out behavior by loading an 8-bit number into the shift register and getting back the most significant bit.
 
 Then, we test our shifting by enabling the peripheral clock edge and loading a bit into the serial data in. We get back parallel data out, which is just like the parallel data that we loaded in the previous test, but shifted over once and with our serial data bit on the end.
@@ -54,3 +81,28 @@ Our injectable failure mode is that the input conditioner failes to actually "co
 ![](pics/faulty_conditioner.jpg)
 
 We could test this by making `CS`'s conditioner faulty. Then, if `CS` ever flickers, the FSM would reset its state to `GET`.
+
+## Test Strategy
+
+For our test strategy, we tried consecutively writing then reading every single value possibility (0-127), to and from every single memory address (0-255). If the read output is the same as what we write, for every possibility, then our test passes.
+
+```
+int tests_passed = 1;
+for(int addr = 0; addr < 128; addr = addr + 1 )
+{
+	for (int value = 0; value < 256; value = value + 1 )
+	{
+		spi_write(&SpiInstance, addr, value);
+		u8 res = spi_read(&SpiInstance, addr);
+		if (res != value)
+		{
+			xil_printf("Test failed!!! Wrote to %X. %X transmitted. %X readback.\n\r", addr, value, res);
+			tests_passed = 0;
+		} else
+		{
+			xil_printf("Test passed");
+		}
+
+	}
+}
+```

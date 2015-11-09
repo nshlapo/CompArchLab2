@@ -78,33 +78,33 @@ input fault
 
         else begin
 
-         // once we display a posedge or negedge, reset them
-        if (positiveedge || negativeedge) begin
-            positiveedge <= 0;
-            negativeedge <= 0;
-        end
+             // once we display a posedge or negedge, reset them
+            if (positiveedge || negativeedge) begin
+                positiveedge <= 0;
+                negativeedge <= 0;
+            end
 
-        // if value hasn't changed, don't start anti-glitch counting yet
-        if(conditioned == synchronizer1)
-            counter <= 0;
-
-        else begin
-            // if counter finished, display high posedge or negedge and shift new conditioned value
-            if( counter == waittime) begin
-                positiveedge <= synchronizer1;
-                negativeedge <= !synchronizer1;
+            // if value hasn't changed, don't start anti-glitch counting yet
+            if(conditioned == synchronizer1)
                 counter <= 0;
-                conditioned <= synchronizer1;
-            end
-            // increment counter until complete
-            else begin
-                counter <= counter+1;
-            end
-        end
 
-        // always shift into the two synch registers
-        synchronizer0 <= noisysignal;
-        synchronizer1 <= synchronizer0;
+            else begin
+                // if counter finished, display high posedge or negedge and shift new conditioned value
+                if( counter == waittime) begin
+                    positiveedge <= synchronizer1;
+                    negativeedge <= !synchronizer1;
+                    counter <= 0;
+                    conditioned <= synchronizer1;
+                end
+                // increment counter until complete
+                else begin
+                    counter <= counter+1;
+                end
+            end
+
+            // always shift into the two synch registers
+            synchronizer0 <= noisysignal;
+            synchronizer1 <= synchronizer0;
         end
     end
 

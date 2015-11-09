@@ -37,7 +37,7 @@ always @(posedge clk) begin
     count_state <= 1;
   end
 
-  // this be the real fsm
+  // Counting states need to be set in the previous state, and disabled at the end of the current state
   else begin
     case (curr_state)
         state_get: begin

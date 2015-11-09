@@ -28,12 +28,14 @@ output reg  negativeedge    // 1 clk pulse at falling edge of conditioned
             negativeedge <= 0;
         end
 
+        // if value hasn't changed, don't start anti-glitch counting yet
         if(conditioned == synchronizer1)
             counter <= 0;
 
 
 
         else begin
+            //
             if( counter == waittime) begin
                 positiveedge <= synchronizer1;
                 negativeedge <= !synchronizer1;
@@ -68,7 +70,7 @@ input fault
     reg synchronizer1 = 0;
 
     always @(posedge clk) begin
-
+        // if fault_pin is high, output of the conditioner should always be zero
         if (fault == 1)
             conditioned <= 0;
 

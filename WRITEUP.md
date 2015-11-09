@@ -119,7 +119,7 @@ for(int addr = 0; addr < 128; addr = addr + 1 )
 }
 ```
 
-When we loaded our SPI onto the ZYBO and ran these tests, they passed. Additionally, we created a Verilog test bench that tests our SPI memory in a similar way (writing a value to a memory location then reading it back), and tested our fault input conditioner.
+When we loaded our SPI onto the ZYBO and ran these tests, they passed. Additionally, we created a Verilog test bench that tests our SPI memory in a similar way (writing a value to a memory location then reading it back), and tested our fault input conditioner. Instead of writing the values we want, it writes in 0s when we set `fault=1`.
 
 ##Work Plan Reflection
 

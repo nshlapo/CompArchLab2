@@ -73,7 +73,7 @@ Finally, we make sure that we cannot both do parallel load and shift by enabling
 Below is a link showing our shift register being tested.
 
 
-<tinyurl.com/midpointcheckin>
+[FPGA Midpoint Test](https://www.dropbox.com/s/rzxv0z6wkb9nkij/2015-11-02%2012.37.54.mov?dl=0)
 
 ## Finite State Machine
 

@@ -109,4 +109,10 @@ for(int addr = 0; addr < 128; addr = addr + 1 )
 ```
 
 ##Work Plan Reflection
+The total timing of our work plan turned out to be quite accurate, although the distribution of hours within it was definitely thrown off.
+Our work plan called for 40m, in total, to work on loading our programs to the FPGA. This was a gross understatement of the ~5h it ended up taking us, but we really didn't have the necessary perspective to be able to know that.
 
+We spent far less time actually writing verilog code than we planned, with most of the difficult work being the on-paper designs we would work through first (for which we did allocate enough time).
+We also allocated time to separately creating read and write functions for our SPI, not realizing that they would both actually be encoded in our finite state machine. But we hadn't covered fsm's before creating this work plan, so we again had no context for knowing this.
+
+Overall though, our work plan allowed us to not be surprised by the amount of time we spent on this lab.

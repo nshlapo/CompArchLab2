@@ -94,6 +94,27 @@ Our injectable failure mode is that the input conditioner failes to actually "co
 See the Test Strategy section below for our fault injection test.
 
 
+## Verilog SPI Test Results
+```
+Lab2 $ ./build/spi
+VCD info: dumpfile spi.vcd opened for output.
+Test 1
+Load 00000001 into 0000000
+Read from 0000000, expects 00000001
+Result: 00000001
+Test 2
+Load 00001111 into 0000111
+Read from 0000111, expects 00001111
+Result: 00001111
+Test 3
+Read from 0000000, expects 00000001 (first load)
+Result: 00000001
+Test 4
+Load 11111111 into 1111000, but the spi is faulty!
+Read data from 1111000, which we loaded as 11111111, but is faulty! Therefore, should be 00000000
+Result: 00000000
+```
+
 ## Test Strategy
 
 For our test strategy, we tried consecutively writing then reading every single value possibility (0-127), to and from every single memory address (0-255). If the read output is the same as what we write, for every possibility, then our test passes.

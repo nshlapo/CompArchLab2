@@ -54,3 +54,6 @@ Our injectable failure mode is that the input conditioner failes to actually "co
 ![](pics/faulty_conditioner.jpg)
 
 We could test this by making `CS`'s conditioner faulty. Then, if `CS` ever flickers, the FSM would reset its state to `GET`.
+
+
+##Work Plan Reflection

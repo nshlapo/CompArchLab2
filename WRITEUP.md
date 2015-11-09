@@ -82,7 +82,7 @@ Our FSM keeps track of the state it's in, and the current `count`. Then, based o
 
 In our waveform below, you can see `count` being incremented and the flags being set at the appropriate times.
 
-![](pics/fsm_wave.jpg)
+![](pics/fsm_wave.png)
 
 ## Fault Injection
 

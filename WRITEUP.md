@@ -87,7 +87,7 @@ In our waveform below, you can see `count` being incremented and the flags being
 
 ## Fault Injection
 
-Our injectable failure mode is that the input conditioner failes to actually "condition" the input, and rather passes its input signal straight through. This could be due to a manufacturing error which resulted in the input wire being shorted to the output. We simulate this by putting our entire input conditioner in an if-else block, where if `fault==0` we condition the input as normal, otherwise we assign output to input. A circuit representation of this fault is shown below.
+Our injectable failure mode is that the input conditioner failes to actually "condition" the input, and rather always outputs 0. This could be due to a manufacturing error which resulted in the input wire never being soldered to the output. We simulate this by putting our entire input conditioner in an if-else block, where if `fault==0` we condition the input as normal, otherwise we assign output to 0. A circuit representation of this fault is shown below.
 
 ![](pics/faulty_conditioner.jpg)
 
@@ -118,6 +118,8 @@ for(int addr = 0; addr < 128; addr = addr + 1 )
 	}
 }
 ```
+
+When we loaded our SPI onto the ZYBO and ran these tests, they passed. Additionally, we created a Verilog test bench and tested our fault input conditioner.
 
 ##Work Plan Reflection
 The total timing of our work plan turned out to be quite accurate, although the distribution of hours within it was definitely thrown off.

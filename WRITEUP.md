@@ -91,7 +91,7 @@ Our injectable failure mode is that the input conditioner failes to actually "co
 
 ![](pics/faulty_conditioner.jpg)
 
-We could test this by making `CS`'s conditioner faulty. Then, if `CS` ever flickers, the FSM would reset its state to `GET`.
+See the Test Strategy section below for our fault injection test.
 
 
 ## Test Strategy
@@ -119,9 +119,10 @@ for(int addr = 0; addr < 128; addr = addr + 1 )
 }
 ```
 
-When we loaded our SPI onto the ZYBO and ran these tests, they passed. Additionally, we created a Verilog test bench and tested our fault input conditioner.
+When we loaded our SPI onto the ZYBO and ran these tests, they passed. Additionally, we created a Verilog test bench that tests our SPI memory in a similar way (writing a value to a memory location then reading it back), and tested our fault input conditioner.
 
 ##Work Plan Reflection
+
 The total timing of our work plan turned out to be quite accurate, although the distribution of hours within it was definitely thrown off.
 Our work plan called for 40m, in total, to work on loading our programs to the FPGA. This was a gross understatement of the ~5h it ended up taking us, but we really didn't have the necessary perspective to be able to know that.
 

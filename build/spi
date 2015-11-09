@@ -1,1 +1,1 @@
-iverilog -o build/compiled verilog/spimemory.v tests/spi.t.v && ./build/compiled && rm ./build/compiled
+iverilog -o build/compiled verilog/spimemory.v verilog/shiftregister.v verilog/inputconditioner.v verilog/fsm.v verilog/datamemory.v verilog/extra.v tests/spi.t.v && ./build/compiled && rm ./build/compiled

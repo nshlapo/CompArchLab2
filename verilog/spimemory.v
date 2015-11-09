@@ -17,7 +17,7 @@ module spiMemory
     wire [7:0] memout, parout, address;
 
 
- inputconditioner serialcond (clk, mosi_pin, serialin, unwire[0], unwire[1]);
+ inputconditioner_breakable serialcond (clk, mosi_pin, serialin, unwire[0], unwire[1], fault_pin);
  inputconditioner clockcond (clk, sclk_pin, unwire[2], sclkpos, sclkneg);
  inputconditioner statemachinecond (clk, cs_pin, chipselect, unwire[3], unwire[4]);
 

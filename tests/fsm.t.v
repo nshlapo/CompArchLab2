@@ -34,9 +34,9 @@ module testStateMachine();
         $dumpvars(0,dut);
 
         CS = 1; #20
-        CS = 0; read_write = 1; #700
+        CS = 0; read_write = 1; #400
         CS = 1; #20
-        CS = 0; read_write = 0; #700
+        CS = 0; read_write = 0; #400
         CS = 1; #20
 
         $finish;

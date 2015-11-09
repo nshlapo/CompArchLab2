@@ -23,18 +23,21 @@ reg[2:0] curr_state = state_get;
 reg count_state = 0;
 
 always @(posedge clk) begin
+
+  // reset all flags at beginning of clock cycle
   ad_we = 0;
   miso_buff = 0;
   sr_we = 0;
   dm_we = 0;
-  count_state = 0;
 
+  // if chip select is high, return to get state
   if (CS == 1) begin
     curr_state <= state_get;
     count <= 0;
     count_state <= 1;
   end
 
+  // this be the real fsm
   else begin
     case (curr_state)
         state_get: begin
@@ -42,18 +45,18 @@ always @(posedge clk) begin
           if (count == 8) begin
             curr_state <= state_got;
             count <= 0;
+            count_state <= 0;
           end
-          // else begin
-          //   count <= count + 1;
-          // end
         end
 
         state_got: begin
           ad_we <= 1;
           if (read_write == 1)
             curr_state <= state_read;
-          else
+          else begin
             curr_state <= state_write;
+            count_state <= 1;
+          end
         end
 
         state_read: begin
@@ -63,17 +66,16 @@ always @(posedge clk) begin
         state_read2: begin
           sr_we <= 1;
           curr_state <= state_read3;
+          count_state <= 1;
         end
 
         state_read3: begin
-          count_state <= 1;
           miso_buff <= 1;
           if (count == 8) begin
             curr_state <= state_done;
             count <= 0;
+            count_state <= 0;
           end
-          // else
-          //   count <= count + 1;
         end
 
         state_write: begin
@@ -81,9 +83,8 @@ always @(posedge clk) begin
           if (count == 8) begin
             curr_state <= state_write2;
             count <= 0;
+            count_state <= 0;
           end
-        //   else
-        //     count <= count + 1;
         end
 
         state_write2: begin
@@ -97,6 +98,7 @@ always @(posedge clk) begin
   end
 end
 
+// If the fsm is in a counting state, increment the count
 always @(posedge s_clk) begin
   if (count_state == 1)
     count <= count + 1;

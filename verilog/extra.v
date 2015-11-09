@@ -1,3 +1,4 @@
+// Latch to store the address passed by the shift register
 module addressLatch (
     input C,
     input CE,
@@ -10,6 +11,7 @@ module addressLatch (
     end
 endmodule
 
+// D Flip Flop to store the output of shift register serial out
 module DFF (
     input C,
     input CE,
@@ -22,10 +24,12 @@ module DFF (
     end
 endmodule
 
+// Tri-state buffer to output dff to miso pin
 module triBuff (
     input q,
     input buff,
     output pin);
 
+    // If buff high, q, else z
     assign pin = (buff) ? q : 1'bz;
 endmodule

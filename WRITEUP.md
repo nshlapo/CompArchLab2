@@ -74,6 +74,16 @@ Below is a link showing our shift register being tested.
 
 tinyurl.com/midpointcheckin
 
+## Finite State Machine
+
+We implemented an FSM in order to keep track of which state our SPI Memory is in, and to set the flags to their proper values. We first read the first 7 bits to obtain the address. We read the eigth bit to determine if this is a read or write operation. For read operations, we spend two cycles reading Data Memory and then moving the value to the shift register. For write, we get the bits to write, then commit it to data memory.
+
+Our FSM keeps track of the state it's in, and the current `count`. Then, based on the state, it sets the appropriate flags.
+
+In our waveform below, you can see `count` being incremented and the flags being set at the appropriate times.
+
+![](pics/fsm_wave.jpg)
+
 ## Fault Injection
 
 Our injectable failure mode is that the input conditioner failes to actually "condition" the input, and rather passes its input signal straight through. This could be due to a manufacturing error which resulted in the input wire being shorted to the output. We simulate this by putting our entire input conditioner in an if-else block, where if `fault==0` we condition the input as normal, otherwise we assign output to input. A circuit representation of this fault is shown below.
